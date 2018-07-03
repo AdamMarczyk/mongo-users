@@ -18,10 +18,4 @@ describe('Deleting a user', () => {
         done();
       });
   });
-
-  it('class method remove', () => {});
-
-  it('class method findAndRemove', () => {});
-
-  it('class method findByIdAndRemove', () => {});
 });
