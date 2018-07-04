@@ -5,6 +5,7 @@ const BlogPost = require('../src/blogPost');
 
 describe('Associations', () => {
   let joe, blogPost, comment;
+
   beforeEach(done => {
     joe = new User({ name: 'Joe' });
     blogPost = new BlogPost({
@@ -16,5 +17,15 @@ describe('Associations', () => {
     joe.blogPosts.push(blogPost);
     blogPost.comments.push(comment);
     comment.user = joe;
+
+    Promise.all([joe.save(), blogPost.save(), comment.save()]).then(() =>
+      done()
+    );
+  });
+
+  it('saves a relations between a user and a blogpost', done => {
+    User.findOne({ name: 'Joe' }).then(user => {
+      done();
+    });
   });
 });
